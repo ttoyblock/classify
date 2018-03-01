@@ -1,20 +1,15 @@
 # -*- coding:utf-8 -*-
-__author__ = 'Ulric Qin'
+__author__ = 'ttoyblock'
 
 # -- app config --
 DEBUG = True
 
-# -- db config --
-DB_HOST = "127.0.0.1"
-DB_PORT = 3306
-DB_USER = "root"
-DB_PASS = ""
-DB_NAME = "falcon_links"
+# -- tensor config --
+MOD_DIR = ""
+LOG_DIR = ""
 
-# -- cookie config --
-SECRET_KEY = "4e.5tyg8-u9ioj"
-SESSION_COOKIE_NAME = "falcon-links"
-PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
+TRAIN_DIR = ""
+TEST_DIR = ""
 
 try:
     from frame.local_config import *

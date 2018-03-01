@@ -5,6 +5,7 @@ from PIL import Image
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from model import inference
+from frame import config
 
 
 def get_one_image(img_dir):
@@ -17,8 +18,7 @@ def get_one_image(img_dir):
      return image_arr
 
 
-def test(test_file):
-    log_dir = './log'
+def check(test_file):
     image_arr = get_one_image(test_file)
 
     with tf.Graph().as_default():
@@ -31,7 +31,7 @@ def test(test_file):
         x = tf.placeholder(tf.float32, shape=[208, 208, 3])
         saver = tf.train.Saver()
         with tf.Session() as sess:
-            ckpt = tf.train.get_checkpoint_state(log_dir)
+            ckpt = tf.train.get_checkpoint_state(config.LOG_DIR)
             if ckpt and ckpt.model_checkpoint_path:
                 global_step = ckpt.model_checkpoint_path.split('/')[-1].split('-')[-1]
                 saver.restore(sess, ckpt.model_checkpoint_path)

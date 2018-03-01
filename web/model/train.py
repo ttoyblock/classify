@@ -5,6 +5,7 @@ import numpy as np
 import tensorflow as tf
 from model import inference, losses, trainning, evaluation
 from img import get_files, get_batch
+from frame import config
 
 N_CLASSES = 3
 # 要分类的类别数，这里是5分类
@@ -20,10 +21,7 @@ learning_rate = 0.0001
 
 
 def run_training():
-    train_dir = './train'
-    logs_train_dir = './log'
-    # 存放一些模型文件的目录
-    train, train_label = get_files(train_dir)
+    train, train_label = get_files(config.TRAIN_DIR)
     train_batch, train_label_batch = get_batch(train, train_label,
                                                          IMG_W,
                                                          IMG_H,
@@ -36,7 +34,7 @@ def run_training():
 
     summary_op = tf.summary.merge_all()
     sess = tf.Session()
-    train_writer = tf.summary.FileWriter(logs_train_dir, sess.graph)
+    train_writer = tf.summary.FileWriter(config.LOG_DIR, sess.graph)
     saver = tf.train.Saver()
 
     sess.run(tf.global_variables_initializer())

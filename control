@@ -5,8 +5,7 @@ cd $WORKSPACE
 
 mkdir -p var
 
-module=links
-app=falcon-$module
+app=classify
 pidfile=var/app.pid
 logfile=var/app.log
 
@@ -25,7 +24,7 @@ function start() {
     source env/bin/activate
     hash gunicorn 2>&- || { echo >&2 "I require gunicorn but it's not installed.  Aborting."; exit 1; }
 
-    check_pid
+    # check_pid
     running=$?
     if [ $running -gt 0 ];then
         echo -n "$app now is running already, pid="

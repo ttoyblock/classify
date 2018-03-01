@@ -3,6 +3,7 @@ import os
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+from frame import config
 
 
 def get_files(file_dir):
@@ -85,7 +86,7 @@ def view():
     IMG_W = 208
     IMG_H = 208
 
-    image_list, label_list = get_files(train_dir)
+    image_list, label_list = get_files(config.TRAIN_DIR)
     image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
 
     with tf.Session() as sess:

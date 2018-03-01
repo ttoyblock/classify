@@ -1,11 +1,9 @@
 # -*- coding:utf-8 -*-
 import json
 from flask import request
-from web import app
 from frame.utils import random_string
-from web.model.alert import Alert
-from web.model.test import test
-
+from web.model.test import check
+from web import app
 
 @app.route('/api/version')
 def api_version():
@@ -21,15 +19,15 @@ def api_create_tmpgraph():
     d = request.data
     jdata = json.loads(d)
     urls = jdata.get("urls") or []
-    result = test(urls)
+    # result = check(urls[0])
+    result = {"url1": {0:0.0, 1:0.2}, 
+            "url2":{0:0.0, 1:0.2}}
 
     ret = {
         "ok": False,
-        "id": id_,
+        "data": result,
     }
 
-    if id_:
+    if len(result) != 0:
         ret['ok'] = True
-        return json.dumps(ret)
-    else:
-        return json.dumps(ret)
+    return json.dumps(ret)

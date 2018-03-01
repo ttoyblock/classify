@@ -1,4 +1,4 @@
-falcon links: falcon告警合并后的详细信息查看
+classify: 图片分类器
 
 ## Install dependency
 
@@ -10,11 +10,6 @@ falcon links: falcon告警合并后的详细信息查看
     # use douban pypi
     $ ./env/bin/pip install -r pip_requirements.txt -i http://pypi.douban.com/simple
 
-
-## Init database and config
-
-- database schema: scripts/schema.sql
-- database config: frame/config.py
 
 ## Start
 
