@@ -3,7 +3,8 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from model import inference
+
+from models import inference
 from frame.config import LOG_DIR
 from tools.download import deal_images
 
