@@ -15,8 +15,6 @@ classify: 图片分类器
 
     $ ./env/bin/python wsgi.py
 
-    --> goto http://127.0.0.1:5090
-
 
 ## Run with gunicorn
 
@@ -25,3 +23,5 @@ classify: 图片分类器
     
     --> goto http://127.0.0.1:5090
 
+## Test
+    # curl -d '{}' '127.0.0.1:8888/api/test'

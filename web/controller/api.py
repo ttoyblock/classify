@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 import json
 from flask import request
-from frame.utils import random_string
-from web.model.test import check
+# from web.yahoo.classify_nsfw import check_images
+from web.sc.check import sc_check
 from web import app
+
 
 @app.route('/api/version')
 def api_version():
@@ -14,20 +15,22 @@ def api_version():
 def api_health():
     return 'ok'
 
+
 @app.route("/api/test", methods=["POST",])
 def api_create_tmpgraph():
-    d = request.data
+    d = request.get_data()
     jdata = json.loads(d)
+
     urls = jdata.get("urls") or []
-    # result = check(urls[0])
-    result = {"url1": {0:0.0, 1:0.2}, 
-            "url2":{0:0.0, 1:0.2}}
+    se_result = sc_check(urls)
+    # result = {"url1": {"se": 0.0, "ad": 0.2}, 
+    #     "url2": {"se": 0.0, "ad": 0.2}}
 
     ret = {
         "ok": False,
-        "data": result,
+        "data": se_result,
     }
 
-    if len(result) != 0:
+    if len(se_result) != 0:
         ret['ok'] = True
     return json.dumps(ret)
