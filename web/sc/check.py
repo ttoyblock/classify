@@ -10,7 +10,7 @@ from tools.download import deal_images
 
 
 def get_one_image(img_dir):
-    # Image.open()好像一次只能打开一张图片，不能一次打开一个文件夹，这里大家可以去搜索一下
+    # Image.open()好像一次只能打开一张图片
     image = Image.open(img_dir)
     plt.imshow(image)
     image = image.resize([208, 208])

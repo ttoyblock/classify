@@ -8,7 +8,7 @@ from model import inference, losses, trainning, evaluation
 from img import get_files, get_batch
 # from frame import config
 
-N_CLASSES = 3
+N_CLASSES = 2
 # 要分类的类别数，这里是5分类
 IMG_W = 208
 IMG_H = 208
