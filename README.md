@@ -4,7 +4,9 @@ classify: 图片分类器
 
     # yum install -y python-virtualenv
 
-    $ cd /home/work/open-falcon/links/
+    ...
+
+    $ cd path to classify/
     $ virtualenv ./env
 
     # use douban pypi
@@ -19,9 +21,8 @@ classify: 图片分类器
 ## Run with gunicorn
 
     $ . env/bin/activate
-    $ bash run.sh
+    $ ./control start
     
-    --> goto http://127.0.0.1:5090
 
 ## Test
     # curl -d '{}' '127.0.0.1:8888/api/test'
