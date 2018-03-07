@@ -46,7 +46,7 @@ def get_files(file_dir):
     label_list = list(temp[:, 1])
     label_list = [int(i) for i in label_list]
 
-    print image_list
+    # print image_list
     return image_list, label_list
     # 返回两个list
 
