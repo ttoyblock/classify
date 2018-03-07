@@ -6,28 +6,32 @@ import numpy as np
 import tensorflow as tf
 from model import inference, losses, trainning, evaluation
 from img import get_files, get_batch
-# from frame import config
 
-N_CLASSES = 3
 # 要分类的类别数，这里是3分类
+N_CLASSES = 3
+# 设置图片的size
 IMG_W = 208
 IMG_H = 208
-# 设置图片的size
 BATCH_SIZE = 8
 CAPACITY = 64
-MAX_STEP = 1000
 # 迭代一千次，如果机器配置好的话，建议至少10000次以上
-learning_rate = 0.0001
+MAX_STEP = 1000
 # 学习率
+learning_rate = 0.0001
+
+
+TRAIN_DIR = '/Users/libc/work/pycode/classify/train/'
+LOG_DIR = '/Users/libc/work/pycode/classify/log/'
+MODEL_PATH = "/Users/libc/work/pycode/classify/mod/sc/model.ckpt"
 
 
 def run_training():
-    train, train_label = get_files('/Users/libc/work/pycode/classify/train/')
+    train, train_label = get_files(TRAIN_DIR)
     train_batch, train_label_batch = get_batch(train, train_label,
-                                                         IMG_W,
-                                                         IMG_H,
-                                                         BATCH_SIZE,
-                                                         CAPACITY)
+                                                        IMG_W,
+                                                        IMG_H,
+                                                        BATCH_SIZE,
+                                                        CAPACITY)
     train_logits = inference(train_batch, BATCH_SIZE, N_CLASSES)
     train_loss = losses(train_logits, train_label_batch)
     train_op = trainning(train_loss, learning_rate)
@@ -35,7 +39,7 @@ def run_training():
 
     summary_op = tf.summary.merge_all()
     sess = tf.Session()
-    train_writer = tf.summary.FileWriter('/Users/libc/work/pycode/classify/log/', sess.graph)
+    train_writer = tf.summary.FileWriter(LOG_DIR, sess.graph)
     saver = tf.train.Saver()
 
     sess.run(tf.global_variables_initializer())
@@ -55,7 +59,7 @@ def run_training():
                 train_writer.add_summary(summary_str, step)
 
             if step % 200 == 0 or (step + 1) == MAX_STEP:
-                checkpoint_path = os.path.join('/Users/libc/work/pycode/classify/log/', 'model.ckpt')
+                checkpoint_path = os.path.join(LOG_DIR, 'model.ckpt')
                 saver.save(sess, checkpoint_path, global_step=step)
                 # 每迭代200次，利用saver.save()保存一次模型文件，以便测试的时候使用
 
@@ -68,11 +72,12 @@ def run_training():
 
     # save model
     saver = tf.train.Saver()
-    model_path = "/Users/libc/work/pycode/classify/mod/sc/model.ckpt"
+    model_path = MODEL_PATH
     save_path = saver.save(sess, model_path)
     print save_path
     sess.close()
 
 
 if __name__ == '__main__':
+    print 'start training......'
     run_training()

@@ -13,11 +13,10 @@ def get_files(file_dir):
     CM = []
     label_CM = []
     # 定义存放各类别数据和对应标签的列表，列表名对应你所需要分类的列别名
-    # SE，AD等是我的数据集中要分类图片的名字
+    # SE,AD,CM等是我的数据集中图片分类
 
     for dir in os.listdir(file_dir):
         d = file_dir + dir + '/'
-        print d
         for file in os.listdir(d):
             if dir == '0':
                 SE.append(d+file)
@@ -32,8 +31,8 @@ def get_files(file_dir):
         # 这里一定要注意，如果是多分类问题的话，一定要将分类的标签从0开始。
             # 这里是五类，标签为0，1，2，3，4。我之前以为这个标签应该是随便设置的，结果就出现了Target[0] out of range的错误。
 
-    print('There are %d SE\nThere are %d AD\nThere are %d CM' % (len(SE), len(AD), len(CM)))
     # 打印出提取图片的情况，检测是否正确提取
+    print('There are %d SE\nThere are %d AD\nThere are %d CM' % (len(SE), len(AD), len(CM)))
 
     image_list = np.hstack((SE, AD, CM))
     label_list = np.hstack((label_SE, label_AD, label_CM))
