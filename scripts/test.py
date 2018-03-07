@@ -5,7 +5,6 @@ from PIL import Image
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from model import inference
-# from frame.config import LOG_DIR
 
 # 训练日志位置
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -60,8 +59,4 @@ def check(test_file):
 
 if __name__ == "__main__":
     test_img = '/Users/libc/work/pycode/classify/images/Fm58PNXk50AJwoIJNHM4l6E3ce6A.jpg'
-    # check(test_img)
-    PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-    PROJECT_DIR = PROJECT_DIR[:PROJECT_DIR.rindex('/')+1]
-    print PROJECT_DIR
-    
+    check(test_img)
