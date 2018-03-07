@@ -7,6 +7,9 @@ import tensorflow as tf
 from model import inference, losses, trainning, evaluation
 from img import get_files, get_batch
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = PROJECT_DIR[:PROJECT_DIR.rindex('/')+1]
+
 # 要分类的类别数，这里是3分类
 N_CLASSES = 3
 # 设置图片的size
@@ -19,10 +22,9 @@ MAX_STEP = 1000
 # 学习率
 learning_rate = 0.0001
 
-
-TRAIN_DIR = '/Users/libc/work/pycode/classify/train/'
-LOG_DIR = '/Users/libc/work/pycode/classify/log/'
-MODEL_PATH = "/Users/libc/work/pycode/classify/mod/sc/model.ckpt"
+TRAIN_DIR = PROJECT_DIR + 'train/'
+LOG_DIR = PROJECT_DIR + 'log/'
+MODEL_PATH = PROJECT_DIR + "mod/sc/model.ckpt"
 
 
 def run_training():
