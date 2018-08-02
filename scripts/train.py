@@ -80,6 +80,21 @@ def run_training():
     sess.close()
 
 
+def img_check():
+    from PIL import Image
+    f = "/Users/libc/work/pycode/classify/train/1/"
+    for i in os.listdir(f):
+        try:
+            img = Image.open(f+i)
+            if img.format != "JPEG":
+                print i
+                os.remove(f+i)
+        except:
+            print i
+            os.remove(f+i)
+
 if __name__ == '__main__':
+    # img_check()
+
     print 'start training......'
     run_training()
